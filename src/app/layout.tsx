@@ -1,18 +1,24 @@
 "use client";
 
-import { Geist, Geist_Mono } from "next/font/google";
+import { Baloo_2, DM_Serif_Display, Nunito } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const baloo2 = Baloo_2({
   subsets: ["latin"],
+  variable: "--font-baloo",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmSerifDisplay = DM_Serif_Display({
+  weight: "400",
   subsets: ["latin"],
+  variable: "--font-dm-serif",
+});
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-nunito",
 });
 
 export default function RootLayout({
@@ -44,47 +50,41 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#f8fafc]`}
+        className={`${dmSerifDisplay.variable} ${nunito.variable} ${baloo2.variable} font-nunito antialiased bg-elcare-cream`}
       >
         {/* Top Navbar */}
         <header
-          className={`sticky top-0 z-50 transition-all duration-300 ${
-            scrolled
-              ? "bg-gradient-to-b from-white/90 to-white/60 shadow-lg backdrop-blur"
-              : "bg-transparent"
-          }`}
+          className={`sticky top-0 z-50 transition-all duration-300 bg-gradient-to-b from-elcare-cream/100 to-elcare-cream/60 backdrop-blur`}
         >
-          <div className="container mx-auto px-4 flex items-center justify-between py-4 relative">
-            {/* Logo */}
+          <div className="container mx-auto p-4 flex items-center justify-between relative">
             <div className="flex items-center gap-2">
-              <div className="w-12 h-12 bg-purple-400 rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                B
-              </div>
-              <span className="font-bold text-xl text-gray-800">BabySleep</span>
+              <span className="font-baloo font-semibold text-4xl text-elcare-purple">
+                <span className="text-elcare-purple-300">el</span>care
+              </span>
             </div>
             {/* Desktop Menu */}
             <nav className="hidden md:flex gap-8">
               <Link
                 href="#home"
-                className="text-lg font-semibold text-gray-800 hover:text-purple-700 transition"
+                className="text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
               >
                 Home
               </Link>
               <Link
                 href="#about"
-                className="text-lg font-semibold text-gray-800 hover:text-purple-700 transition"
+                className="text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
               >
                 About
               </Link>
               <Link
                 href="#offer"
-                className="text-lg font-semibold text-gray-800 hover:text-purple-700 transition"
+                className="text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
               >
                 What I Offer
               </Link>
               <Link
                 href="#pricing"
-                className="text-lg font-semibold text-gray-800 hover:text-purple-700 transition"
+                className="text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
               >
                 Pricing
               </Link>
@@ -96,17 +96,17 @@ export default function RootLayout({
               onClick={() => setMenuOpen((v) => !v)}
             >
               <span
-                className={`block w-7 h-1 bg-gray-800 rounded transition-all duration-300 ${
+                className={`block w-7 h-1 bg-elcare-purple-600 rounded transition-all duration-300 ${
                   menuOpen ? "rotate-45 translate-y-2" : ""
                 }`}
               ></span>
               <span
-                className={`block w-7 h-1 bg-gray-800 rounded my-1 transition-all duration-300 ${
+                className={`block w-7 h-1 bg-elcare-purple-600 rounded my-1 transition-all duration-300 ${
                   menuOpen ? "opacity-0" : ""
                 }`}
               ></span>
               <span
-                className={`block w-7 h-1 bg-gray-800 rounded transition-all duration-300 ${
+                className={`block w-7 h-1 bg-elcare-purple-600 rounded transition-all duration-300 ${
                   menuOpen ? "-rotate-45 -translate-y-2" : ""
                 }`}
               ></span>
@@ -116,28 +116,28 @@ export default function RootLayout({
               <nav className="absolute top-full right-4 mt-2 w-48 bg-white rounded-lg shadow-lg flex flex-col py-2 z-50 md:hidden animate-fade-in">
                 <Link
                   href="#home"
-                  className="px-6 py-3 text-lg font-semibold text-gray-800 hover:text-purple-700 transition"
+                  className="px-6 py-3 text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
                   onClick={() => setMenuOpen(false)}
                 >
                   Home
                 </Link>
                 <Link
                   href="#about"
-                  className="px-6 py-3 text-lg font-semibold text-gray-800 hover:text-purple-700 transition"
+                  className="px-6 py-3 text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
                   onClick={() => setMenuOpen(false)}
                 >
                   About
                 </Link>
                 <Link
                   href="#offer"
-                  className="px-6 py-3 text-lg font-semibold text-gray-800 hover:text-purple-700 transition"
+                  className="px-6 py-3 text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
                   onClick={() => setMenuOpen(false)}
                 >
                   What I Offer
                 </Link>
                 <Link
                   href="#pricing"
-                  className="px-6 py-3 text-lg font-semibold text-gray-800 hover:text-purple-700 transition"
+                  className="px-6 py-3 text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
                   onClick={() => setMenuOpen(false)}
                 >
                   Pricing
@@ -147,9 +147,7 @@ export default function RootLayout({
           </div>
         </header>
         {/* Main Content */}
-        <main className="min-h-screen">
-          <div className="container mx-auto px-4">{children}</div>
-        </main>
+        <main>{children}</main>
       </body>
     </html>
   );
