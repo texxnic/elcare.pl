@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "next": "15.3.2",
+    "next-cloudinary": "^6.16.0",
+    "next-image-export-optimizer": "^1.19.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "yet-another-react-lightbox": "^3.23.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -1,6 +1,6 @@
 "use client";
 
-import { Baloo_2, DM_Serif_Display, Nunito } from "next/font/google";
+import { Baloo_2, Nunito } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -8,12 +8,6 @@ import { useEffect, useState } from "react";
 const baloo2 = Baloo_2({
   subsets: ["latin"],
   variable: "--font-baloo",
-});
-
-const dmSerifDisplay = DM_Serif_Display({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-dm-serif",
 });
 
 const nunito = Nunito({
@@ -50,13 +44,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dmSerifDisplay.variable} ${nunito.variable} ${baloo2.variable} font-nunito antialiased bg-elcare-cream`}
+        className={` ${nunito.variable} ${baloo2.variable} font-nunito antialiased bg-elcare-cream`}
       >
         {/* Top Navbar */}
         <header
           className={`sticky top-0 z-50 transition-all duration-300 bg-gradient-to-b from-elcare-cream/100 to-elcare-cream/60 backdrop-blur`}
         >
-          <div className="container mx-auto p-4 flex items-center justify-between relative">
+          <div className="container mx-auto container-x-padding py-4 flex items-center justify-between relative">
             <div className="flex items-center gap-2">
               <span className="font-baloo font-semibold text-4xl text-elcare-purple">
                 <span className="text-elcare-purple-300">el</span>care

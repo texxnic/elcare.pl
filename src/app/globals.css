@@ -22,3 +22,17 @@ h5,
 h6 {
   font-family: var(--font-baloo);
 }
+
+@layer components {
+  .container-x-padding {
+    @apply px-4 md:px-8;
+  }
+
+  .elcare-shadow {
+    @apply shadow-[0_4px_14px_0_rgba(93,77,138,0.4)] hover:shadow-[0_6px_20px_0_rgba(93,77,138,0.6)] transition-all;
+  }
+
+  .panel {
+    @apply rounded-3xl shadow-sm  bg-white p-6;
+  }
+}

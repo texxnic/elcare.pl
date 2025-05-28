@@ -1,11 +1,12 @@
 import Image from "next/image";
 import WavySection from "@/components/WavySection";
+import CertificationPills from "@/components/CertificationPills";
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col gap-0">
       {/* Hero Section - Straight (1) */}
-      <section id="home" className="container mx-auto p-4">
+      <section id="home" className="container mx-auto container-x-padding">
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="max-w-xl">
             <h1 className="text-4xl md:text-5xl text-elcare-purple-600 font-semibold mb-4">
@@ -18,10 +19,10 @@ export default function Home() {
               jaśniejszych dni.
             </p>
             <div className="flex items-center gap-4 mb-2">
-              <button className="bg-elcare-purple-500 hover:bg-elcare-purple-600 text-white font-semibold px-6 py-3 rounded-lg shadow transition">
+              <button className="bg-elcare-purple-500 hover:bg-elcare-purple-600 text-white font-semibold px-8 py-3 rounded-full elcare-shadow">
                 Rozpocznij
               </button>
-              <button className="flex items-center gap-2 text-elcare-purple-500 font-medium hover:underline">
+              <button className="flex items-center gap-2 text-elcare-purple-700 font-medium hover:underline">
                 Obejrzyj film wprowadzający
               </button>
             </div>
@@ -45,14 +46,17 @@ export default function Home() {
       >
         <section
           id="about"
-          className="container mx-auto flex flex-col md:flex-row items-center gap-8 px-8 py-16 md:py-20 md:px-24"
+          className="container mx-auto flex flex-col md:flex-row items-center justify-center gap-8 container-x-padding py-10"
         >
-          <div className="flex-shrink-0">
-            {/* Placeholder profile photo */}
-            <div className="w-32 h-32 rounded-full overflow-hidden bg-elcare-cream-100 flex items-center justify-center">
-              <span className="text-5xl">👩‍⚕️</span>
-            </div>
-          </div>
+          {/* Placeholder profile photo */}
+          <Image
+            src="/elo_photo_shape.png"
+            alt="Elona Balan"
+            width={300}
+            height={300}
+            className=""
+          />
+
           <div>
             <h2 className="text-3xl font-bold mb-2 text-elcare-purple-600">
               O mnie
@@ -63,32 +67,17 @@ export default function Home() {
               dostosowane do potrzeb Twojej rodziny i zaprojektowane tak, aby
               wspierać zdrowe nawyki snu Twojego malucha.
             </p>
-            <div className="flex gap-6 text-elcare-purple-500 text-base">
-              <div className="flex items-center gap-2">
-                <span className="text-elcare-yellow-300">★</span> Certyfikowana
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-elcare-yellow-300">★</span> Opinie
-                5-gwiazdkowe
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-elcare-yellow-300">★</span> Konsultacje
-                online
-              </div>
-            </div>
+            <CertificationPills />
           </div>
         </section>
       </WavySection>
 
       {/* What I Offer Section - Straight (3) */}
-      <section
-        id="offer"
-        className="container mx-auto px-8 py-16 md:py-20 md:px-24"
-      >
+      <section id="offer" className="container mx-auto container-x-padding">
         <h2 className="text-3xl font-bold mb-8 text-elcare-purple-600 text-center md:text-left">
           Co oferuję
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="flex flex-wrap">
           <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
             <span className="text-3xl mb-2">🛏️</span>
             <div className="font-semibold text-lg mb-1">
@@ -121,15 +110,12 @@ export default function Home() {
         waveColorClass="bg-elcare-cream-100"
         bgColor="bg-elcare-purple-50"
       >
-        <section
-          id="pricing"
-          className="container mx-auto px-8 py-16 md:py-20 md:px-24"
-        >
+        <section id="pricing" className="container mx-auto container-x-padding">
           <h2 className="text-3xl font-bold mb-8 text-elcare-purple-600 text-center md:text-left">
             Cennik
           </h2>
           <div className="flex flex-col md:flex-row gap-8 justify-center">
-            <div className="bg-elcare-purple-50 rounded-xl shadow p-8 flex-1 min-w-[220px] max-w-xs flex flex-col items-center">
+            <div className="bg-elcare-purple-50 panel flex-1 min-w-[220px] max-w-xs flex flex-col items-center">
               <div className="font-bold text-xl mb-2">Start</div>
               <div className="text-3xl font-bold text-elcare-purple-500 mb-4">
                 399 zł
@@ -139,7 +125,7 @@ export default function Home() {
                 <li>Spersonalizowany plan snu</li>
                 <li>Wsparcie mailowe (1 tydzień)</li>
               </ul>
-              <button className="bg-elcare-purple-500 hover:bg-elcare-purple-600 text-white font-semibold px-6 py-2 rounded-lg shadow transition">
+              <button className="bg-elcare-purple-500 hover:bg-elcare-purple-600 text-white font-semibold px-8 py-2 rounded-full elcare-shadow">
                 Wybierz
               </button>
             </div>
@@ -153,7 +139,7 @@ export default function Home() {
                 <li>2 tygodnie wsparcia</li>
                 <li>Konsultacja kontrolna</li>
               </ul>
-              <button className="bg-elcare-purple-500 hover:bg-elcare-purple-600 text-white font-semibold px-6 py-2 rounded-lg shadow transition">
+              <button className="bg-elcare-purple-500 hover:bg-elcare-purple-600 text-white font-semibold px-8 py-2 rounded-full elcare-shadow">
                 Wybierz
               </button>
             </div>
@@ -164,7 +150,7 @@ export default function Home() {
       {/* Testimonials Section - Straight (5) */}
       <section
         id="testimonials"
-        className="container mx-auto px-8 py-16 md:py-20 md:px-24"
+        className="container mx-auto container-x-padding"
       >
         <h2 className="text-3xl font-bold mb-8 text-elcare-purple-600 text-center md:text-left">
           Opinie
