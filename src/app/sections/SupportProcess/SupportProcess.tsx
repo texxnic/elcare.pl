@@ -6,6 +6,7 @@ import MultipleChoiceIcon from "@/components/icons/MultipleChoiceIcon";
 import VideoMessageIcon from "@/components/icons/VideoMessageIcon";
 import TimelineIcon from "@/components/icons/TimelineIcon";
 import HelpingHandIcon from "@/components/icons/HelpingHandIcon";
+import NewMessageIcon from "@/components/NewMessageIcon";
 
 const SupportProcess = () => {
   return (
@@ -62,7 +63,7 @@ const SupportProcess = () => {
                   className="max-w-lg"
                 />
                 <OfferCard
-                  icon={<HelpingHandIcon />}
+                  icon={<NewMessageIcon />}
                   title="Wsparcie po zakończeniu"
                   description="Po zakończeniu współpracy odbywa się krótka, 15 minutowa podsumowująca rozmowa, w trakcie której omawiamy osiągnięte rezultaty i przekazuję zalecenia na przyszłość. Dodatkowo przez kolejne 6 miesięcy możecie Państwo wysłać do mnie do 5 wiadomości z pytaniami dotyczącymi snu dziecka (np. w sytuacjach wyjątkowych, podróży czy zmian rytmu dnia)."
                   variant="cream"

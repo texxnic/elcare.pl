@@ -10,7 +10,7 @@ export default function WhatIOffer() {
   return (
     <section id="offer" className="container mx-auto py-8  container-x-padding">
       <h2 className="text-4xl font-bold mb-2 text-elcare-purple-600 text-center">
-        Co oferuję
+        Oferta
       </h2>
       <p className="text-elcare-purple-500 mb-8 max-w-2xl mx-auto text-center">
         Wybierz formę wsparcia, która najlepiej odpowiada potrzebom Twojej
