@@ -17,24 +17,24 @@ const GalleryPopup = ({ isOpen, onClose, type }: GalleryPopupProps) => {
   // This would be replaced with actual images from your assets
   const images = [
     {
-      src: "/dyplom_mag-min.jpg",
-      alt: "Dyplom 1",
-    },
-    {
       src: "/dyplom_spec-min.jpg",
-      alt: "Dyplom 2",
+      alt: "Dyplom Biotechnologia licencjat",
     },
     {
-      src: "/dylom-sleep.jpg",
-      alt: "Dyplom 2",
+      src: "/dyplom_mag-min.jpg",
+      alt: "Dyplom Biotechnologia magister",
     },
     {
-      src: "/dylom-sleep2.jpg",
-      alt: "Dyplom 2",
+      src: "/d1.jpg",
+      alt: "Certyfikat ukończenia kursu Behavioral Insomnia of Childhood (125 godz.) przez Elonę Balan, data 16.12.2024",
     },
     {
-      src: "/dylom-sleep3.jpg",
-      alt: "Dyplom 2",
+      src: "/d2.jpg",
+      alt: "Certyfikat ukończenia kursu BabySleep Sleep Training Method przez Elonę Balan, data 03.02.2025",
+    },
+    {
+      src: "/d3.jpg",
+      alt: "Certyfikat ukończenia modułu Sleep Improving Strategies i stażu przez Elonę Balan, data 07.05.2025",
     },
   ];
 

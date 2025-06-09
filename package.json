@@ -9,11 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/kv": "^3.0.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.16.0",
+    "lucide-react": "^0.511.0",
     "next": "15.3.2",
     "next-cloudinary": "^6.16.0",
     "next-image-export-optimizer": "^1.19.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-google-recaptcha-v3": "^1.11.0",
+    "tailwind-merge": "^3.3.0",
     "yet-another-react-lightbox": "^3.23.2"
   },
   "devDependencies": {

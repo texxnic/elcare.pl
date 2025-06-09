@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { colors } from "./src/styles/colors";
 
 const config: Config = {
   content: [
@@ -9,36 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "elcare-cream": {
-          50: "#FFFCF8", // lightest
-          100: "#FDF8F1", // base background
-          200: "#F7EEDD",
-          DEFAULT: "#FDF8F1", // default shade
-        },
-        "elcare-purple": {
-          50: "#F4F2F9",
-          100: "#E3DDF5",
-          200: "#CFC4F4",
-          300: "#B7A5EC",
-          400: "#8A7AD3",
-          500: "#5D4D8A", // primary deep purple
-          600: "#443772", // darker text
-          DEFAULT: "#5D4D8A", // default shade
-        },
-        "elcare-yellow": {
-          100: "#FFF8E3",
-          200: "#FCE6A6",
-          300: "#F8C25A", // main accent
-          400: "#E6AA42",
-          DEFAULT: "#E6AA42", // default shade
-        },
-        "elcare-peach": {
-          100: "#FFEAE5",
-          200: "#FDD4C6",
-          300: "#EDA89A", // peach button
-          400: "#DB8471",
-          DEFAULT: "#DB8471", // default shade
-        },
+        "elcare-cream": colors.elcareCream,
+        "elcare-purple": colors.elcarePurple,
+        "elcare-yellow": colors.elcareYellow,
+        "elcare-peach": colors.elcarePeach,
       },
       fontFamily: {
         "dm-serif": ["var(--font-dm-serif)"],

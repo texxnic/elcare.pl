@@ -23,9 +23,17 @@ h6 {
   font-family: var(--font-baloo);
 }
 
+p {
+  line-height: 1.4rem;
+}
+
 @layer components {
   .container-x-padding {
     @apply px-4 md:px-8;
+  }
+
+  .container-y-padding {
+    @apply py-12;
   }
 
   .elcare-shadow {
@@ -33,6 +41,19 @@ h6 {
   }
 
   .panel {
-    @apply rounded-3xl shadow-sm  bg-white p-6;
+    @apply rounded-3xl shadow-sm  bg-white;
   }
+}
+
+/* Card flip utilities */
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
 }
