@@ -123,6 +123,7 @@ export default function Footer({
                 >
                   support@elcare.com
                 </a>
+                <li className="text-elcare-purple-600">+48669887661</li>
               </li>
             </ul>
           </div>
