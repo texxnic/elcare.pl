@@ -7,6 +7,15 @@
   --foreground: #443772;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* Z-index system */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-fixed: 30;
+  --z-modal: 40;
+  --z-popover: 50;
+  --z-tooltip: 60;
 }
 
 body {
@@ -42,6 +51,35 @@ p {
 
   .panel {
     @apply rounded-3xl shadow-sm  bg-white;
+  }
+
+  /* Z-index system */
+  .z-base {
+    z-index: var(--z-base);
+  }
+
+  .z-dropdown {
+    z-index: var(--z-dropdown);
+  }
+
+  .z-sticky {
+    z-index: var(--z-sticky);
+  }
+
+  .z-fixed {
+    z-index: var(--z-fixed);
+  }
+
+  .z-modal {
+    z-index: var(--z-modal);
+  }
+
+  .z-popover {
+    z-index: var(--z-popover);
+  }
+
+  .z-tooltip {
+    z-index: var(--z-tooltip);
   }
 }
 

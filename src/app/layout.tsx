@@ -3,6 +3,7 @@ import "./globals.css";
 import ClientHeader from "@/components/ClientHeader";
 import ClientFooter from "@/components/ClientFooter";
 import CookieConsent from "@/components/CookieConsent";
+import ZencalScript from "@/components/ZencalScript";
 import { Metadata } from "next";
 
 const baloo2 = Baloo_2({
@@ -22,7 +23,6 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
@@ -106,22 +106,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link
-          rel="icon"
-          href="/favicon-16x16.png"
-          type="image/png"
-          sizes="16x16"
-        />
-        <link
-          rel="icon"
-          href="/favicon-32x32.png"
-          type="image/png"
-          sizes="32x32"
-        />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-      </head>
+      <head></head>
       <body
         className={` ${nunito.variable} ${baloo2.variable} font-nunito antialiased bg-elcare-cream`}
       >
@@ -129,6 +114,7 @@ export default function RootLayout({
         {/* Main Content */}
         <main>{children}</main>
         <ClientFooter />
+        <ZencalScript />
         <CookieConsent />
       </body>
     </html>

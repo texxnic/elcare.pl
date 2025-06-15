@@ -36,7 +36,7 @@ const ConsultationProcess = () => {
               <OfferCard
                 icon={<VideoMessageIcon />}
                 title="Konsultacja online"
-                description="Ustalamy dogodny termin 40-minutowej konsultacji online (wideorozmowa lub rozmowa telefoniczna), podczas której szczegółowo omawiamy problemy ze snem i wspólnie szukamy rozwiązań."
+                description="Ustalamy dogodny termin 45-minutowej konsultacji online (wideorozmowa lub rozmowa telefoniczna), podczas której szczegółowo omawiamy problemy ze snem i wspólnie szukamy rozwiązań."
                 variant="cream"
                 hover={false}
               />

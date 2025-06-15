@@ -25,6 +25,10 @@ interface OfferCardProps extends VariantProps<typeof offerCardVariants> {
   isSelected?: boolean;
   className?: string;
   isRecommended?: boolean;
+  ctaText?: {
+    selected: string;
+    unselected: string;
+  };
 }
 
 export default function OfferCard({
@@ -41,6 +45,10 @@ export default function OfferCard({
   hover = true,
   className,
   isRecommended = false,
+  ctaText = {
+    selected: "Wybrano",
+    unselected: "Wybierz",
+  },
 }: OfferCardProps) {
   const isCreamVariant = variant === "cream";
   const textColorClass = isCreamVariant
@@ -103,7 +111,7 @@ export default function OfferCard({
             className="self-center mt-2"
             disabled={isSelected}
           >
-            {isSelected ? "Wybrano" : "Wybierz"}
+            {isSelected ? ctaText.selected : ctaText.unselected}
           </Button>
         )}
       </div>

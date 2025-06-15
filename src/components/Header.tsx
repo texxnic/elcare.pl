@@ -5,7 +5,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 transition-all duration-300 bg-gradient-to-b from-elcare-cream/100 to-elcare-cream/60 backdrop-blur">
+    <header className="sticky top-0 z-sticky transition-all duration-300 bg-gradient-to-b from-elcare-cream/100 to-elcare-cream/60 backdrop-blur">
       <div className="container mx-auto container-x-padding py-4 flex items-center justify-between relative">
         <div className="flex items-center gap-2">
           <Link

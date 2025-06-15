@@ -39,7 +39,7 @@ const SupportProcess = () => {
                 <OfferCard
                   icon={<VideoMessageIcon />}
                   title="Rozmowa telefoniczna"
-                  description="Podczas 40-minutowej rozmowy telefonicznej lub wideo omawiamy aktualną sytuację związaną ze snem Państwa dziecka. Wyjaśniamy wszelkie wątpliwości, ustalamy priorytetowe cele oraz wymieniamy się informacjami, które pozwolą mi lepiej dobrać dalsze kroki."
+                  description="Podczas 45-minutowej rozmowy telefonicznej lub wideo omawiamy aktualną sytuację związaną ze snem Państwa dziecka. Wyjaśniamy wszelkie wątpliwości, ustalamy priorytetowe cele oraz wymieniamy się informacjami, które pozwolą mi lepiej dobrać dalsze kroki."
                   variant="cream"
                   hover={false}
                   className="max-w-full"

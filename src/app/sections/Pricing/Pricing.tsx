@@ -3,20 +3,24 @@ import WavySection from "@/components/WavySection";
 import { OfferType, useOffer } from "@/app/context/OfferContext";
 import OfferCard from "@/components/design-system/offer-card";
 import { PRICING } from "@/config/pricing";
+import { useState } from "react";
+import ZencalModal from "@/components/ZencalModal";
+import ContactInfoPopup from "@/components/ContactInfoPopup";
+import { SLUGS } from "@/components/ZencalEmbed";
 
 const INDIVIDUAL_SUPPORT_FEATURES_FRONT = ["Indywidualny plan działania"];
 
 const INDIVIDUAL_SUPPORT_FEATURES = [
   "Indywidualny plan działania",
   "Dziennik snu (dożywotni dostęp)",
-  "Rozmowa telefoniczna/wideo (40 min)",
+  "Rozmowa telefoniczna/wideo (45 min)",
   "Wsparcie WhatsApp (9:00-17:00)",
   "Rozmowa podsumowująca",
   "5 dodatkowych wiadomości (do 6 miesięcy)",
 ];
 
 const CONSULTATION_FEATURES = [
-  "40-minutowa wideorozmowa",
+  "45-minutowa wideorozmowa",
   "Analiza sytuacji snu dziecka",
   "Wskazówki i rekomendacje",
   "Odpowiedzi na pytania",
@@ -24,6 +28,16 @@ const CONSULTATION_FEATURES = [
 
 export default function Pricing() {
   const { selectedOffer, setSelectedOffer } = useOffer();
+  const [selectedSlug, setSelectedSlug] = useState("");
+  const [showContactInfo, setShowContactInfo] = useState(false);
+
+  const handleCloseModal = () => {
+    setSelectedSlug("");
+  };
+
+  const handleReturningClientClick = () => {
+    setShowContactInfo(true);
+  };
 
   return (
     <section
@@ -73,6 +87,7 @@ export default function Pricing() {
                 ...INDIVIDUAL_SUPPORT_FEATURES_FRONT,
               ]}
               description="Idealny dla krótkoterminowego wsparcia"
+              onSelect={() => setSelectedSlug(SLUGS.WSPARCIE_1)}
             />
             <OfferCard
               title="Pakiet Standard"
@@ -82,8 +97,8 @@ export default function Pricing() {
                 ...INDIVIDUAL_SUPPORT_FEATURES_FRONT,
               ]}
               description="Najpopularniejszy wybór"
-              isSelected
               isRecommended
+              onSelect={() => setSelectedSlug(SLUGS.WSPARCIE_2)}
             />
             <OfferCard
               title="Pakiet Kompleksowy"
@@ -93,6 +108,7 @@ export default function Pricing() {
                 ...INDIVIDUAL_SUPPORT_FEATURES_FRONT,
               ]}
               description="Kompleksowe wsparcie"
+              onSelect={() => setSelectedSlug(SLUGS.WSPARCIE_3)}
             />
           </div>
           <div className="mt-8 text-center text-elcare-purple-600">
@@ -109,15 +125,28 @@ export default function Pricing() {
             price={`${PRICING.CONSULTATION_PRICE} zł`}
             features={CONSULTATION_FEATURES}
             description="Jednorazowa konsultacja"
+            onSelect={() => setSelectedSlug(SLUGS.KONSULTACJA)}
           />
           <OfferCard
             title="Konsultacja dla powracających"
             price={`${PRICING.RETURNING_CONSULTATION_PRICE} zł`}
             features={CONSULTATION_FEATURES}
             description="Specjalna oferta dla stałych klientów"
+            onSelect={handleReturningClientClick}
           />
         </div>
       )}
+
+      <ZencalModal
+        isOpen={!!selectedSlug}
+        onClose={handleCloseModal}
+        slug={selectedSlug}
+      />
+
+      <ContactInfoPopup
+        isOpen={showContactInfo}
+        onClose={() => setShowContactInfo(false)}
+      />
     </section>
   );
 }
