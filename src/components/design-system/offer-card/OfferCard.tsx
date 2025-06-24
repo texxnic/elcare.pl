@@ -24,7 +24,6 @@ interface OfferCardProps extends VariantProps<typeof offerCardVariants> {
   onSelect?: () => void;
   isSelected?: boolean;
   className?: string;
-  isRecommended?: boolean;
   ctaText?: {
     selected: string;
     unselected: string;
@@ -44,7 +43,6 @@ export default function OfferCard({
   variant = "purple",
   hover = true,
   className,
-  isRecommended = false,
   ctaText = {
     selected: "Wybrano",
     unselected: "Wybierz",
@@ -70,11 +68,6 @@ export default function OfferCard({
         className
       )}
     >
-      {isRecommended && (
-        <div className="absolute -top-3 -right-3 bg-elcare-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-          Polecany
-        </div>
-      )}
       <div className="p-6 overflow-hidden rounded-3xl">
         <div className="flex flex-col">
           {icon && (

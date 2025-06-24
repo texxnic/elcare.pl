@@ -97,7 +97,6 @@ export default function Pricing() {
                 ...INDIVIDUAL_SUPPORT_FEATURES_FRONT,
               ]}
               description="Najpopularniejszy wybór"
-              isRecommended
               onSelect={() => setSelectedSlug(SLUGS.WSPARCIE_2)}
             />
             <OfferCard

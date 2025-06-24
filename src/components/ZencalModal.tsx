@@ -46,7 +46,7 @@ const ZencalModal = ({ isOpen, onClose, slug }: ZencalModalProps) => {
             />
           </svg>
         </button>
-        <div className="p-4 md:p-6 overflow-y-auto h-full max-h-[calc(90vh-3rem)]">
+        <div className="p-4 md:p-6 overflow-y-auto h-full">
           <ZencalEmbed slug={slug} />
         </div>
       </div>
