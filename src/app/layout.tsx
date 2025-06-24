@@ -72,7 +72,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pl_PL",
-    url: "https://elcare.com",
+    url: "https://elcare.pl",
     title: "Elcare - Konsultant Snu Dziecięcego",
     description:
       "Profesjonalny konsultant snu dziecięcego. Pomagam rodzicom w nauce samodzielnego zasypiania i rozwiązywaniu problemów ze snem u dzieci. Indywidualne podejście i sprawdzone metody.",
@@ -95,7 +95,7 @@ export const metadata: Metadata = {
     initialScale: 1,
   },
   alternates: {
-    canonical: "https://elcare.com",
+    canonical: "https://elcare.pl",
   },
 };
 
