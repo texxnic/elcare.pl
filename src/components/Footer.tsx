@@ -33,7 +33,7 @@ export default function Footer({
             {/* Social Media Links */}
             <div className="flex gap-4 mt-2">
               <a
-                href="#"
+                href="https://www.instagram.com/elcare.pl/"
                 className="text-elcare-purple-600 hover:text-elcare-purple-500 transition-colors"
               >
                 <svg
@@ -50,7 +50,7 @@ export default function Footer({
                 </svg>
               </a>
               <a
-                href="#"
+                href="http://facebook.com/elcarepl"
                 className="text-elcare-purple-600 hover:text-elcare-purple-500 transition-colors"
               >
                 <svg
