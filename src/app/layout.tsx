@@ -51,22 +51,20 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   description:
-    "Profesjonalny konsultant snu dziecięcego. Pomagam rodzicom w nauce samodzielnego zasypiania i rozwiązywaniu problemów ze snem u dzieci. Indywidualne podejście i sprawdzone metody.",
+    "Profesjonalny konsultant snu dziecięcego. Wspieram rodziców w budowaniu zdrowych nawyków snu u dzieci i rozwiązywaniu problemów ze snem, stosując łagodne metody oparte na więzi. Gwarantuję indywidualne podejście i sprawdzone strategie.",
   keywords: [
     "konsultant snu dziecięcego",
     "sen dziecka",
     "problemy ze snem u dzieci",
-    "trening snu niemowląt",
     "zdrowy sen dziecka",
     "bezsenność u dzieci",
     "higiena snu dziecka",
     "doradca snu dziecięcego",
     "metody usypiania dzieci",
     "rytm dobowy dziecka",
-    "samodzielne zasypianie",
-    "nauka samodzielnego zasypiania",
-    "jak nauczyć dziecko samodzielnego zasypiania",
-    "metoda samodzielnego zasypiania",
+    "łagodne metody nauki snu",
+    "wsparcie snu dziecka",
+    "zdrowe nawyki snu",
   ],
   authors: [{ name: "ElCare" }],
   openGraph: {
@@ -75,7 +73,7 @@ export const metadata: Metadata = {
     url: "https://elcare.pl",
     title: "Elcare - Konsultant Snu Dziecięcego",
     description:
-      "Profesjonalny konsultant snu dziecięcego. Pomagam rodzicom w nauce samodzielnego zasypiania i rozwiązywaniu problemów ze snem u dzieci. Indywidualne podejście i sprawdzone metody.",
+      "Profesjonalny konsultant snu dziecięcego. Wspieram rodziców w budowaniu zdrowych nawyków snu u dzieci i rozwiązywaniu problemów ze snem, stosując łagodne metody oparte na więzi. Gwarantuję indywidualne podejście i sprawdzone strategie.",
     siteName: "Elcare",
     images: [
       {
