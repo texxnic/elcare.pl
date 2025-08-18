@@ -5,6 +5,8 @@ import ClientFooter from "@/components/ClientFooter";
 import CookieConsent from "@/components/CookieConsent";
 import ZencalScript from "@/components/ZencalScript";
 import { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const baloo2 = Baloo_2({
   subsets: ["latin"],
@@ -114,6 +116,8 @@ export default function RootLayout({
         <ClientFooter />
         <ZencalScript />
         <CookieConsent />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -68,6 +68,11 @@ export default function PrivacyPolicy() {
                 Obsługa zapytań i komunikacja - na podstawie prawnie
                 uzasadnionego interesu (art. 6 ust. 1 lit. f RODO)
               </li>
+              <li>
+                Analiza ruchu i poprawa wydajności serwisu (statystyki
+                zagregowane i zanonimizowane) - na podstawie prawnie
+                uzasadnionego interesu (art. 6 ust. 1 lit. f RODO)
+              </li>
             </ul>
           </section>
 
@@ -83,6 +88,12 @@ export default function PrivacyPolicy() {
                 może zbierać dane o zachowaniu użytkownika na stronie.
               </li>
             </ul>
+            <p className="mt-2">
+              Użytkownik może w każdym momencie zarządzać zgodą na pliki cookie
+              za pomocą mechanizmu wyświetlanego na stronie. Ustawienia
+              przeglądarki również pozwalają ograniczyć lub zablokować pliki
+              cookie.
+            </p>
           </section>
 
           <section className="mb-8">
