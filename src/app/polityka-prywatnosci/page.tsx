@@ -73,6 +73,11 @@ export default function PrivacyPolicy() {
                 zagregowane i zanonimizowane) - na podstawie prawnie
                 uzasadnionego interesu (art. 6 ust. 1 lit. f RODO)
               </li>
+              <li>
+                Analiza zachowań użytkowników i poprawa użyteczności (sesje i
+                heatmapy) – na podstawie zgody użytkownika (art. 6 ust. 1 lit.
+                a RODO)
+              </li>
             </ul>
           </section>
 
@@ -86,6 +91,25 @@ export default function PrivacyPolicy() {
                 <strong>reCAPTCHA</strong> - używany do ochrony formularzy przed
                 spamem i automatycznymi atakami. Jest to usługa Google, która
                 może zbierać dane o zachowaniu użytkownika na stronie.
+              </li>
+              <li>
+                <strong>Vercel Analytics</strong> – anonimowe statystyki
+                odwiedzin, bez identyfikacji użytkownika i bez wykorzystywania
+                plików cookie identyfikujących. Służy do zliczania odsłon i
+                podstawowych metryk użycia serwisu.
+              </li>
+              <li>
+                <strong>Vercel Speed Insights</strong> – pomiary wydajności
+                (Core Web Vitals) w celu optymalizacji działania strony. Dane
+                mają charakter zagregowany.
+              </li>
+              <li>
+                <strong>Microsoft Clarity</strong> – narzędzie do analizy
+                użyteczności (nagrania sesji, heatmapy). Clarity może
+                przetwarzać dane o interakcjach ze stroną (np. ruch kursora,
+                przewijanie, kliknięcia), z zastosowaniem masek dla pól
+                wrażliwych. Clarity jest uruchamiane wyłącznie po wyrażeniu
+                zgody na ciasteczka/analitykę.
               </li>
             </ul>
             <p className="mt-2">
