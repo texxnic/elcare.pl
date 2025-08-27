@@ -84,6 +84,7 @@ export default function Pricing() {
               price={`${PRICING.BASIC_PACKAGE_PRICE} zł`}
               features={[
                 "1 tydzień wsparcia",
+                "2 wiadomości po wsparciu",
                 ...INDIVIDUAL_SUPPORT_FEATURES_FRONT,
               ]}
               description="Idealny dla krótkoterminowego wsparcia"
@@ -94,6 +95,7 @@ export default function Pricing() {
               price={`${PRICING.STANDARD_PACKAGE_PRICE} zł`}
               features={[
                 "2 tygodnie wsparcia",
+                "3 wiadomości po wsparciu",
                 ...INDIVIDUAL_SUPPORT_FEATURES_FRONT,
               ]}
               description="Najpopularniejszy wybór"
@@ -104,6 +106,7 @@ export default function Pricing() {
               price={`${PRICING.COMPREHENSIVE_PACKAGE_PRICE} zł`}
               features={[
                 "3 tygodnie wsparcia",
+                "5 wiadomości po wsparciu",
                 ...INDIVIDUAL_SUPPORT_FEATURES_FRONT,
               ]}
               description="Kompleksowe wsparcie"

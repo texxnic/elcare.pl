@@ -30,6 +30,24 @@ interface OfferCardProps extends VariantProps<typeof offerCardVariants> {
   };
 }
 
+// Checkmark icon component
+const CheckmarkIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={cn("w-4 h-4", className)}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M5 13l4 4L19 7"
+    />
+  </svg>
+);
+
 export default function OfferCard({
   title,
   price,
@@ -55,6 +73,14 @@ export default function OfferCard({
   const selectedBgClass = isCreamVariant
     ? "bg-elcare-cream-300"
     : "bg-elcare-purple-100 border-2 border-elcare-purple-500";
+
+  // Feature styling based on variant
+  const featureIconClass = isCreamVariant
+    ? "text-elcare-yellow-400"
+    : "text-elcare-purple-400";
+  const featureTextClass = isCreamVariant
+    ? "text-elcare-purple-600"
+    : "text-elcare-purple-500";
 
   return (
     <div
@@ -85,9 +111,23 @@ export default function OfferCard({
             <p className={cn(" mb-4", textColorClass)}>{description}</p>
           )}
           {features && features.length > 0 && (
-            <ul className={cn("mb-4", textColorClass)}>
+            <ul className="mb-6 space-y-3">
               {features.map((feature, index) => (
-                <li key={index}>{feature}</li>
+                <li key={index} className="flex gap-3 items-center">
+                  <div
+                    className={cn(
+                      "flex-shrink-0 mt-0.5 p-1 rounded-full bg-white/60 backdrop-blur-sm",
+                      featureIconClass
+                    )}
+                  >
+                    <CheckmarkIcon className={featureIconClass} />
+                  </div>
+                  <span
+                    className={cn("text-sm leading-relaxed", featureTextClass)}
+                  >
+                    {feature}
+                  </span>
+                </li>
               ))}
             </ul>
           )}

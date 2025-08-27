@@ -4,8 +4,6 @@ import React from "react";
 import OfferCard from "@/components/design-system/offer-card/OfferCard";
 import MultipleChoiceIcon from "@/components/icons/MultipleChoiceIcon";
 import VideoMessageIcon from "@/components/icons/VideoMessageIcon";
-import TimelineIcon from "@/components/icons/TimelineIcon";
-import HelpingHandIcon from "@/components/icons/HelpingHandIcon";
 
 const ConsultationProcess = () => {
   return (

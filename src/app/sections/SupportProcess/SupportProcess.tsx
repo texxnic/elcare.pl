@@ -56,7 +56,7 @@ const SupportProcess = () => {
               <div className="flex flex-wrap justify-center gap-8">
                 <OfferCard
                   icon={<HelpingHandIcon />}
-                  title="Rozpoczęcie wsparcia"
+                  title="Codzienne wsparcie i monitoring"
                   description="Przez cały okres trwania wybranego pakietu aktywnie wspieram Was w procesie poprawy snu dziecka. Codziennie analizuję dziennik snu i monitoruję postępy, aby upewnić się, że wszystko idzie zgodnie z planem. W razie potrzeby wprowadzamy modyfikacje i wspólnie rozwiązujemy pojawiające się trudności."
                   variant="cream"
                   hover={false}
@@ -65,7 +65,7 @@ const SupportProcess = () => {
                 <OfferCard
                   icon={<NewMessageIcon />}
                   title="Wsparcie po zakończeniu"
-                  description="Po zakończeniu współpracy odbywa się krótka, 15 minutowa podsumowująca rozmowa, w trakcie której omawiamy osiągnięte rezultaty i przekazuję zalecenia na przyszłość. Dodatkowo przez kolejne 6 miesięcy możecie Państwo wysłać do mnie do 5 wiadomości z pytaniami dotyczącymi snu dziecka (np. w sytuacjach wyjątkowych, podróży czy zmian rytmu dnia)."
+                  description="Po zakończeniu współpracy odbywa się krótka, 15 minutowa podsumowująca rozmowa, w trakcie której omawiamy osiągnięte rezultaty i przekazuję zalecenia na przyszłość. Dodatkowo przez kolejny miesiąc możecie Państwo wysłać do mnie określoną liczbę wiadomości z pytaniami dotyczącymi snu dziecka (np. w sytuacjach wyjątkowych, podróży czy zmian rytmu dnia)."
                   variant="cream"
                   hover={false}
                   className="max-w-lg"

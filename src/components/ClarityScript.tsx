@@ -22,11 +22,17 @@ export default function ClarityScript() {
       const handleCustom = () => setConsented(true);
 
       window.addEventListener("storage", handleStorage);
-      window.addEventListener("cookie-consent-accepted", handleCustom as EventListener);
+      window.addEventListener(
+        "cookie-consent-accepted",
+        handleCustom as EventListener
+      );
 
       return () => {
         window.removeEventListener("storage", handleStorage);
-        window.removeEventListener("cookie-consent-accepted", handleCustom as EventListener);
+        window.removeEventListener(
+          "cookie-consent-accepted",
+          handleCustom as EventListener
+        );
       };
     } catch {}
   }, []);
@@ -44,5 +50,3 @@ export default function ClarityScript() {
     `}</Script>
   );
 }
-
-
