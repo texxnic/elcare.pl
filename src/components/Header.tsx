@@ -1,8 +1,31 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [guideDropdownOpen, setGuideDropdownOpen] = useState(false);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = () => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+    }
+    setGuideDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setGuideDropdownOpen(false);
+    }, 150); // Small delay to prevent accidental closing
+  };
+
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeoutRef.current) {
+        clearTimeout(dropdownTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <header className="sticky top-0 z-sticky transition-all duration-300 bg-gradient-to-b from-elcare-cream/100 to-elcare-cream/60 backdrop-blur">
@@ -41,6 +64,41 @@ export default function Header() {
           >
             Cennik
           </Link>
+          {/* Przewodnik snu Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <button className="text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition flex justify-between items-center gap-1">
+              Przewodnik snu
+              <svg
+                className={`w-4 h-4 transition-transform ${
+                  guideDropdownOpen ? "rotate-180" : ""
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            {guideDropdownOpen && (
+              <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg py-2 z-50">
+                <Link
+                  href="/kalendarz"
+                  className="block px-4 py-3 text-elcare-purple-600 hover:text-elcare-purple-500 hover:bg-elcare-purple-50 transition"
+                >
+                  Kalendarz skoków rozwojowych i kryzysów
+                </Link>
+              </div>
+            )}
+          </div>
         </nav>
         {/* Hamburger Icon */}
         <button
@@ -66,7 +124,7 @@ export default function Header() {
         </button>
         {/* Mobile Menu Dropdown */}
         {menuOpen && (
-          <nav className="absolute top-full right-4 mt-2 w-48 bg-white rounded-lg shadow-lg flex flex-col py-2 z-50 md:hidden animate-fade-in">
+          <nav className="absolute top-full right-4 mt-2 w-56 bg-white rounded-lg shadow-lg flex flex-col py-2 z-50 md:hidden animate-fade-in">
             <Link
               href="#home"
               className="px-6 py-3 text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
@@ -95,6 +153,41 @@ export default function Header() {
             >
               Cennik
             </Link>
+            {/* Mobile Przewodnik snu Dropdown */}
+            <div className="relative">
+              <button
+                className="w-full px-6 py-3 text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition text-left flex items-center justify-between"
+                onClick={() => setGuideDropdownOpen(!guideDropdownOpen)}
+              >
+                Przewodnik snu
+                <svg
+                  className={`w-4 h-4 transition-transform ${
+                    guideDropdownOpen ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {guideDropdownOpen && (
+                <div className="bg-elcare-purple-50">
+                  <Link
+                    href="/kalendarz"
+                    className="block px-6 py-3 pl-8 text-elcare-purple-600 hover:text-elcare-purple-500 transition"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Kalendarz skoków rozwojowych i kryzysów
+                  </Link>
+                </div>
+              )}
+            </div>
           </nav>
         )}
       </div>
