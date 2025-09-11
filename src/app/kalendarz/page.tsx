@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import InfoPageLayout from "@/components/InfoPageLayout";
@@ -97,7 +97,7 @@ const NOT_CALM_WEEKS = [
   60, 63, 64, 71, 74, 75,
 ];
 
-export default function KalendarzPage() {
+function KalendarzPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -688,5 +688,21 @@ export default function KalendarzPage() {
         </div> */}
       </div>
     </InfoPageLayout>
+  );
+}
+
+export default function KalendarzPage() {
+  return (
+    <Suspense
+      fallback={
+        <InfoPageLayout title="Kalendarz skoków rozwojowych i kryzysów">
+          <div className="flex justify-center items-center min-h-[400px]">
+            <div className="text-elcare-purple-500">Ładowanie...</div>
+          </div>
+        </InfoPageLayout>
+      }
+    >
+      <KalendarzPageContent />
+    </Suspense>
   );
 }
