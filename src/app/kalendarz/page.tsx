@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import InfoPageLayout from "@/components/InfoPageLayout";
+import * as Tooltip from "@radix-ui/react-tooltip";
 
 interface DevelopmentLeap {
   week: number;
@@ -110,13 +111,10 @@ function KalendarzPageContent() {
   const [currentWeek, setCurrentWeek] = useState(0);
   const [showPreviousWeeks, setShowPreviousWeeks] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
-  const [tooltip, setTooltip] = useState<{
-    show: boolean;
-    content: string;
-    x: number;
-    y: number;
-    position: "top" | "bottom" | "left" | "right";
-  }>({ show: false, content: "", x: 0, y: 0, position: "top" });
+  const [selectedLeap, setSelectedLeap] = useState<DevelopmentLeap | null>(
+    null
+  );
+  const [showLeapModal, setShowLeapModal] = useState(false);
   const calendarRef = useRef<HTMLDivElement>(null);
 
   // Load date from URL query parameters on component mount
@@ -260,59 +258,6 @@ function KalendarzPageContent() {
     return week <= currentWeek;
   };
 
-  const handleMouseEnter = (
-    event: React.MouseEvent,
-    leap: DevelopmentLeap,
-    formattedDate: string
-  ) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-
-    // Calculate tooltip dimensions (approximate)
-    const tooltipWidth = 320; // max-w-sm
-    const tooltipHeight = 120; // approximate height
-
-    // Determine best position
-    let x = rect.left + rect.width / 2;
-    let y = rect.top;
-    let position: "top" | "bottom" | "left" | "right" = "top";
-
-    // Check if tooltip would overflow right edge
-    if (x + tooltipWidth / 2 > viewportWidth) {
-      x = viewportWidth - tooltipWidth / 2 - 10;
-    }
-
-    // Check if tooltip would overflow left edge
-    if (x - tooltipWidth / 2 < 0) {
-      x = tooltipWidth / 2 + 10;
-    }
-
-    // Check if tooltip would overflow top edge
-    if (y - tooltipHeight < 0) {
-      y = rect.bottom + tooltipHeight / 2;
-      position = "bottom";
-    }
-
-    // Check if tooltip would overflow bottom edge
-    if (y + tooltipHeight > viewportHeight) {
-      y = rect.top - tooltipHeight / 2;
-      position = "top";
-    }
-
-    setTooltip({
-      show: true,
-      content: `${leap.title}\n\n${leap.description}\n`,
-      x,
-      y,
-      position,
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setTooltip({ show: false, content: "", x: 0, y: 0, position: "top" });
-  };
-
   const renderWeekCell = (week: number) => {
     const leap = DEVELOPMENT_LEAPS.find((l) => l.week === week);
     const isCurrent = isCurrentWeek(week);
@@ -342,6 +287,75 @@ function KalendarzPageContent() {
         })
       : null;
 
+    if (leap) {
+      const handleLeapClick = () => {
+        setSelectedLeap(leap);
+        setShowLeapModal(true);
+      };
+
+      return (
+        <Tooltip.Root key={week} delayDuration={0}>
+          <Tooltip.Trigger asChild>
+            <div
+              className={`
+                relative p-2 md:p-3 border border-elcare-purple-200 rounded-lg text-center transition-all overflow-hidden
+                ${getWeekColor(week)}
+                ${
+                  isCurrent
+                    ? "ring-4 ring-elcare-purple-500 ring-opacity-100 ring-offset-2 ring-offset-white shadow-lg"
+                    : ""
+                }
+                opacity-100
+                cursor-pointer hover:shadow-md hover:scale-105 active:scale-95
+              `}
+              onClick={handleLeapClick}
+            >
+              <div
+                className={`text-sm md:text-lg font-semibold underline ${
+                  isCurrent
+                    ? "text-elcare-purple-700"
+                    : "text-elcare-purple-600"
+                }`}
+              >
+                {week}
+              </div>
+              <span className="absolute -bottom-5 -right-5 text-6xl md:text-7xl text-elcare-yellow-400 opacity-20 ">
+                ⚡
+              </span>
+              {/* Mobile tap indicator */}
+              <div className="md:hidden absolute top-1 right-1 text-xs text-elcare-purple-400 bg-white rounded-full w-5 h-5 flex items-center justify-center">
+                i
+              </div>
+              <div className="text-xs text-elcare-purple-400">tydzień</div>
+              {formattedDate && (
+                <div className="text-xs text-elcare-purple-400 mt-1">
+                  {formattedDate}
+                </div>
+              )}
+            </div>
+          </Tooltip.Trigger>
+          <Tooltip.Portal>
+            <Tooltip.Content
+              className="bg-elcare-purple-600 text-white px-4 py-3 rounded-lg shadow-lg text-sm max-w-sm z-tooltip"
+              sideOffset={5}
+              side="top"
+              align="center"
+              avoidCollisions={true}
+              collisionPadding={10}
+            >
+              <div className="whitespace-pre-line">
+                <span className="font-bold">{leap.title}</span>
+                <br />
+                <br />
+                {leap.description}
+              </div>
+              <Tooltip.Arrow className="fill-elcare-purple-600" />
+            </Tooltip.Content>
+          </Tooltip.Portal>
+        </Tooltip.Root>
+      );
+    }
+
     return (
       <div
         key={week}
@@ -354,29 +368,15 @@ function KalendarzPageContent() {
               : ""
           }
           opacity-100
-          ${leap ? "cursor-pointer hover:shadow-md hover:scale-105 " : ""}
         `}
-        onMouseEnter={
-          leap && formattedDate
-            ? (e) => handleMouseEnter(e, leap, formattedDate)
-            : undefined
-        }
-        onMouseLeave={leap ? handleMouseLeave : undefined}
       >
         <div
           className={`text-sm md:text-lg font-semibold ${
-            leap ? "underline" : ""
-          }  ${
             isCurrent ? "text-elcare-purple-700" : "text-elcare-purple-600"
           }`}
         >
           {week}
         </div>
-        {leap && (
-          <span className="absolute -bottom-5 -right-5 text-6xl md:text-7xl text-elcare-yellow-400 opacity-20 ">
-            ⚡
-          </span>
-        )}
         <div className="text-xs text-elcare-purple-400">tydzień</div>
         {formattedDate && (
           <div className="text-xs text-elcare-purple-400 mt-1">
@@ -405,30 +405,6 @@ function KalendarzPageContent() {
   return (
     <InfoPageLayout title="Kalendarz skoków rozwojowych i kryzysów">
       <div className="mb-8">
-        {/* Custom Tooltip */}
-        {tooltip.show && (
-          <div
-            className="fixed z-50 bg-elcare-purple-600 text-white px-4 py-3 rounded-lg shadow-lg text-sm max-w-sm pointer-events-none"
-            style={{
-              left: tooltip.x,
-              top: tooltip.y,
-              transform:
-                tooltip.position === "top"
-                  ? "translateX(-50%) translateY(-100%)"
-                  : "translateX(-50%) translateY(0%)",
-            }}
-          >
-            <div className="whitespace-pre-line">{tooltip.content}</div>
-            <div
-              className={`absolute w-0 h-0 border-l-4 border-r-4 border-transparent ${
-                tooltip.position === "top"
-                  ? "top-full left-1/2 transform -translate-x-1/2 border-t-4 border-t-elcare-purple-600"
-                  : "bottom-full left-1/2 transform -translate-x-1/2 border-b-4 border-b-elcare-purple-600"
-              }`}
-            ></div>
-          </div>
-        )}
-
         <p className="text-lg text-elcare-purple-500 max-w-3xl mx-auto text-center mb-8">
           Wprowadź datę urodzenia dziecka i otrzymaj spersonalizowaną tabelę
           skoków rozwojowych
@@ -542,6 +518,7 @@ function KalendarzPageContent() {
               href="#"
               className="text-elcare-purple-500 hover:text-elcare-purple-400 text-sm underline relative group"
               title="Dzieci urodzone przedwcześnie (przed 37. tygodniem ciąży) mogą mieć inne terminy skoków rozwojowych. Kalendarz można dostosować do wieku skorygowanego (wiek od terminu porodu) zamiast wieku rzeczywistego."
+              onClick={(e) => e.preventDefault()}
             >
               Dziecko urodziło się przedwcześnie?
               <div className="absolute bottom-full left-1/2 transform w-[300px] -translate-x-1/2 mb-2 px-3 py-2 bg-elcare-purple-600 text-white text-xs rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
@@ -593,19 +570,19 @@ function KalendarzPageContent() {
                     <span className="text-elcare-yellow-400"></span>
                   </div>
                   <span className="text-elcare-purple-600">
-                    Około tego tygodnia oczekuje się trudnego czasu
+                    W okolicach tego tygodnia spodziewany jest trudny czas.
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-5 h-5 bg-white border-elcare-purple-100 border-2 rounded"></div>
                   <span className="text-elcare-purple-600">
-                    Obecnie względnie spokojny czas
+                    Względnie spokojny okres
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-5 h-5 bg-elcare-cream-200 border-elcare-purple-100 border-2 rounded"></div>
                   <span className="text-elcare-purple-600">
-                    Możliwy trudny czas
+                    To może być trudny czas.
                   </span>
                 </div>
               </div>
@@ -626,9 +603,11 @@ function KalendarzPageContent() {
 
             {/* Calendar Grid */}
             <div className="overflow-x-auto mb-6 p-2 py-4">
-              <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
-                {weeksToRender.map((week) => renderWeekCell(week))}
-              </div>
+              <Tooltip.Provider>
+                <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+                  {weeksToRender.map((week) => renderWeekCell(week))}
+                </div>
+              </Tooltip.Provider>
             </div>
           </div>
         )}
@@ -686,6 +665,36 @@ function KalendarzPageContent() {
             Umów się na konsultację
           </Link>
         </div> */}
+
+        {/* Leap Details Modal */}
+        {showLeapModal && selectedLeap && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-2xl p-6 max-w-md w-full max-h-[80vh] overflow-y-auto">
+              <div className="flex justify-between items-start mb-4">
+                <h3 className="text-xl font-bold text-elcare-purple-600">
+                  {selectedLeap.title}
+                </h3>
+                <button
+                  onClick={() => setShowLeapModal(false)}
+                  className="text-elcare-purple-400 hover:text-elcare-purple-600 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+              <div className="text-elcare-purple-500 whitespace-pre-line">
+                {selectedLeap.description}
+              </div>
+              <div className="mt-4 pt-4 border-t border-elcare-purple-200">
+                <button
+                  onClick={() => setShowLeapModal(false)}
+                  className="w-full bg-elcare-purple-500 text-white px-4 py-2 rounded-lg hover:bg-elcare-purple-600 transition-colors"
+                >
+                  Zamknij
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </InfoPageLayout>
   );
