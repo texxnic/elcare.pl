@@ -1,7 +1,7 @@
 export const PRICING = {
   // Individual Support Package Prices
   BASIC_PACKAGE_PRICE:
-    Number(process.env.NEXT_PUBLIC_BASIC_PACKAGE_PRICE) || 270,
+    Number(process.env.NEXT_PUBLIC_BASIC_PACKAGE_PRICE) || 280,
   STANDARD_PACKAGE_PRICE:
     Number(process.env.NEXT_PUBLIC_STANDARD_PACKAGE_PRICE) || 390,
   COMPREHENSIVE_PACKAGE_PRICE:
@@ -10,7 +10,7 @@ export const PRICING = {
     Number(process.env.NEXT_PUBLIC_EXTENSION_PRICE_PER_WEEK) || 150,
 
   // Consultation Prices
-  CONSULTATION_PRICE: Number(process.env.NEXT_PUBLIC_CONSULTATION_PRICE) || 150,
+  CONSULTATION_PRICE: Number(process.env.NEXT_PUBLIC_CONSULTATION_PRICE) || 170,
   RETURNING_CONSULTATION_PRICE:
     Number(process.env.NEXT_PUBLIC_RETURNING_CONSULTATION_PRICE) || 100,
 } as const;
