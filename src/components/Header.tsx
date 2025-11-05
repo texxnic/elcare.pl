@@ -1,10 +1,20 @@
+"use client";
+
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [guideDropdownOpen, setGuideDropdownOpen] = useState(false);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Helper function to generate correct href for section links
+  // If on homepage, use hash link. Otherwise, navigate to homepage with hash
+  const getSectionHref = (sectionId: string) => {
+    return pathname === "/" ? `#${sectionId}` : `/#${sectionId}`;
+  };
 
   const handleMouseEnter = () => {
     if (dropdownTimeoutRef.current) {
@@ -41,25 +51,25 @@ export default function Header() {
         {/* Desktop Menu */}
         <nav className="hidden md:flex gap-8">
           <Link
-            href="#home"
+            href={getSectionHref("home")}
             className="text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
           >
             Strona główna
           </Link>
           <Link
-            href="#about"
+            href={getSectionHref("about")}
             className="text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
           >
             O mnie
           </Link>
           <Link
-            href="#offer"
+            href={getSectionHref("offer")}
             className="text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
           >
             Oferta
           </Link>
           <Link
-            href="#pricing"
+            href={getSectionHref("pricing")}
             className="text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
           >
             Cennik
@@ -126,28 +136,28 @@ export default function Header() {
         {menuOpen && (
           <nav className="absolute top-full right-4 mt-2 w-56 bg-white rounded-lg shadow-lg flex flex-col py-2 z-50 md:hidden animate-fade-in">
             <Link
-              href="#home"
+              href={getSectionHref("home")}
               className="px-6 py-3 text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
               onClick={() => setMenuOpen(false)}
             >
               Strona główna
             </Link>
             <Link
-              href="#about"
+              href={getSectionHref("about")}
               className="px-6 py-3 text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
               onClick={() => setMenuOpen(false)}
             >
               O mnie
             </Link>
             <Link
-              href="#offer"
+              href={getSectionHref("offer")}
               className="px-6 py-3 text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
               onClick={() => setMenuOpen(false)}
             >
               Oferta
             </Link>
             <Link
-              href="#pricing"
+              href={getSectionHref("pricing")}
               className="px-6 py-3 text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition"
               onClick={() => setMenuOpen(false)}
             >
