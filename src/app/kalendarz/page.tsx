@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, Suspense } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, notFound } from "next/navigation";
 import InfoPageLayout from "@/components/InfoPageLayout";
 import * as Tooltip from "@radix-ui/react-tooltip";
 
@@ -101,6 +101,10 @@ const NOT_CALM_WEEKS = [
 function KalendarzPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  if (process.env.NEXT_PUBLIC_ENABLE_CALENDAR_PAGE !== "true") {
+    notFound();
+  }
 
   const [birthDate, setBirthDate] = useState({
     day: "",
@@ -281,10 +285,10 @@ function KalendarzPageContent() {
     const weekDate = getWeekDate();
     const formattedDate = weekDate
       ? weekDate.toLocaleDateString("pl-PL", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-        })
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      })
       : null;
 
     if (leap) {
@@ -300,10 +304,9 @@ function KalendarzPageContent() {
               className={`
                 relative p-2 md:p-3 border border-elcare-purple-200 rounded-lg text-center transition-all overflow-hidden
                 ${getWeekColor(week)}
-                ${
-                  isCurrent
-                    ? "ring-4 ring-elcare-purple-500 ring-opacity-100 ring-offset-2 ring-offset-white shadow-lg"
-                    : ""
+                ${isCurrent
+                  ? "ring-4 ring-elcare-purple-500 ring-opacity-100 ring-offset-2 ring-offset-white shadow-lg"
+                  : ""
                 }
                 opacity-100
                 cursor-pointer hover:shadow-md hover:scale-105 active:scale-95
@@ -311,11 +314,10 @@ function KalendarzPageContent() {
               onClick={handleLeapClick}
             >
               <div
-                className={`text-sm md:text-lg font-semibold underline ${
-                  isCurrent
-                    ? "text-elcare-purple-700"
-                    : "text-elcare-purple-600"
-                }`}
+                className={`text-sm md:text-lg font-semibold underline ${isCurrent
+                  ? "text-elcare-purple-700"
+                  : "text-elcare-purple-600"
+                  }`}
               >
                 {week}
               </div>
@@ -362,18 +364,16 @@ function KalendarzPageContent() {
         className={`
           relative p-2 md:p-3 border border-elcare-purple-200 rounded-lg text-center transition-all overflow-hidden
           ${getWeekColor(week)}
-          ${
-            isCurrent
-              ? "ring-4 ring-elcare-purple-500 ring-opacity-100 ring-offset-2 ring-offset-white shadow-lg"
-              : ""
+          ${isCurrent
+            ? "ring-4 ring-elcare-purple-500 ring-opacity-100 ring-offset-2 ring-offset-white shadow-lg"
+            : ""
           }
           opacity-100
         `}
       >
         <div
-          className={`text-sm md:text-lg font-semibold ${
-            isCurrent ? "text-elcare-purple-700" : "text-elcare-purple-600"
-          }`}
+          className={`text-sm md:text-lg font-semibold ${isCurrent ? "text-elcare-purple-700" : "text-elcare-purple-600"
+            }`}
         >
           {week}
         </div>
@@ -423,11 +423,10 @@ function KalendarzPageContent() {
                   min="1"
                   max="31"
                   placeholder="DD"
-                  className={`w-full px-3 md:px-4 py-2 md:py-3 border rounded-lg focus:outline-none text-sm md:text-base ${
-                    errors.length > 0
-                      ? "border-red-500 focus:border-red-500"
-                      : "border-elcare-purple-200 focus:border-elcare-purple-500"
-                  }`}
+                  className={`w-full px-3 md:px-4 py-2 md:py-3 border rounded-lg focus:outline-none text-sm md:text-base ${errors.length > 0
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-elcare-purple-200 focus:border-elcare-purple-500"
+                    }`}
                   value={birthDate.day}
                   onChange={(e) => {
                     setBirthDate((prev) => ({ ...prev, day: e.target.value }));
@@ -445,11 +444,10 @@ function KalendarzPageContent() {
                   min="1"
                   max="12"
                   placeholder="MM"
-                  className={`w-full px-3 md:px-4 py-2 md:py-3 border rounded-lg focus:outline-none text-sm md:text-base ${
-                    errors.length > 0
-                      ? "border-red-500 focus:border-red-500"
-                      : "border-elcare-purple-200 focus:border-elcare-purple-500"
-                  }`}
+                  className={`w-full px-3 md:px-4 py-2 md:py-3 border rounded-lg focus:outline-none text-sm md:text-base ${errors.length > 0
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-elcare-purple-200 focus:border-elcare-purple-500"
+                    }`}
                   value={birthDate.month}
                   onChange={(e) => {
                     setBirthDate((prev) => ({
@@ -468,11 +466,10 @@ function KalendarzPageContent() {
                 <input
                   type="number"
                   placeholder="YYYY"
-                  className={`w-full px-3 md:px-4 py-2 md:py-3 border rounded-lg focus:outline-none text-sm md:text-base ${
-                    errors.length > 0
-                      ? "border-red-500 focus:border-red-500"
-                      : "border-elcare-purple-200 focus:border-elcare-purple-500"
-                  }`}
+                  className={`w-full px-3 md:px-4 py-2 md:py-3 border rounded-lg focus:outline-none text-sm md:text-base ${errors.length > 0
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-elcare-purple-200 focus:border-elcare-purple-500"
+                    }`}
                   value={birthDate.year}
                   onChange={(e) => {
                     setBirthDate((prev) => ({

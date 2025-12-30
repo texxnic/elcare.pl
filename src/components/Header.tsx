@@ -10,6 +10,17 @@ export default function Header() {
   const [guideDropdownOpen, setGuideDropdownOpen] = useState(false);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Guide dropdown configuration
+  const guideItems = [
+    {
+      label: "Kalendarz skoków rozwojowych i kryzysów",
+      href: "/kalendarz",
+      enabled: process.env.NEXT_PUBLIC_ENABLE_CALENDAR_PAGE === "true",
+    },
+  ];
+
+  const visibleGuideItems = guideItems.filter((item) => item.enabled);
+
   // Helper function to generate correct href for section links
   // If on homepage, use hash link. Otherwise, navigate to homepage with hash
   const getSectionHref = (sectionId: string) => {
@@ -75,40 +86,45 @@ export default function Header() {
             Cennik
           </Link>
           {/* Przewodnik snu Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <button className="text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition flex justify-between items-center gap-1">
-              Przewodnik snu
-              <svg
-                className={`w-4 h-4 transition-transform ${
-                  guideDropdownOpen ? "rotate-180" : ""
-                }`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
-            {guideDropdownOpen && (
-              <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg py-2 z-50">
-                <Link
-                  href="/kalendarz"
-                  className="block px-4 py-3 text-elcare-purple-600 hover:text-elcare-purple-500 hover:bg-elcare-purple-50 transition"
+          {/* Przewodnik snu Dropdown */}
+          {visibleGuideItems.length > 0 && (
+            <div
+              className="relative"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button className="text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition flex justify-between items-center gap-1">
+                Przewodnik snu
+                <svg
+                  className={`w-4 h-4 transition-transform ${guideDropdownOpen ? "rotate-180" : ""
+                    }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  Kalendarz skoków rozwojowych i kryzysów
-                </Link>
-              </div>
-            )}
-          </div>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {guideDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg py-2 z-50">
+                  {visibleGuideItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block px-4 py-3 text-elcare-purple-600 hover:text-elcare-purple-500 hover:bg-elcare-purple-50 transition"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </nav>
         {/* Hamburger Icon */}
         <button
@@ -117,19 +133,16 @@ export default function Header() {
           onClick={() => setMenuOpen((v) => !v)}
         >
           <span
-            className={`block w-7 h-1 bg-elcare-purple-600 rounded transition-all duration-300 ${
-              menuOpen ? "rotate-45 translate-y-2" : ""
-            }`}
+            className={`block w-7 h-1 bg-elcare-purple-600 rounded transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""
+              }`}
           ></span>
           <span
-            className={`block w-7 h-1 bg-elcare-purple-600 rounded my-1 transition-all duration-300 ${
-              menuOpen ? "opacity-0" : ""
-            }`}
+            className={`block w-7 h-1 bg-elcare-purple-600 rounded my-1 transition-all duration-300 ${menuOpen ? "opacity-0" : ""
+              }`}
           ></span>
           <span
-            className={`block w-7 h-1 bg-elcare-purple-600 rounded transition-all duration-300 ${
-              menuOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
+            className={`block w-7 h-1 bg-elcare-purple-600 rounded transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
           ></span>
         </button>
         {/* Mobile Menu Dropdown */}
@@ -164,40 +177,45 @@ export default function Header() {
               Cennik
             </Link>
             {/* Mobile Przewodnik snu Dropdown */}
-            <div className="relative">
-              <button
-                className="w-full px-6 py-3 text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition text-left flex items-center justify-between"
-                onClick={() => setGuideDropdownOpen(!guideDropdownOpen)}
-              >
-                Przewodnik snu
-                <svg
-                  className={`w-4 h-4 transition-transform ${
-                    guideDropdownOpen ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            {/* Mobile Przewodnik snu Dropdown */}
+            {visibleGuideItems.length > 0 && (
+              <div className="relative">
+                <button
+                  className="w-full px-6 py-3 text-lg font-semibold text-elcare-purple-600 hover:text-elcare-purple-500 transition text-left flex items-center justify-between"
+                  onClick={() => setGuideDropdownOpen(!guideDropdownOpen)}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              {guideDropdownOpen && (
-                <div className="bg-elcare-purple-50">
-                  <Link
-                    href="/kalendarz"
-                    className="block px-6 py-3 pl-8 text-elcare-purple-600 hover:text-elcare-purple-500 transition"
-                    onClick={() => setMenuOpen(false)}
+                  Przewodnik snu
+                  <svg
+                    className={`w-4 h-4 transition-transform ${guideDropdownOpen ? "rotate-180" : ""
+                      }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    Kalendarz skoków rozwojowych i kryzysów
-                  </Link>
-                </div>
-              )}
-            </div>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+                {guideDropdownOpen && (
+                  <div className="bg-elcare-purple-50">
+                    {visibleGuideItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block px-6 py-3 pl-8 text-elcare-purple-600 hover:text-elcare-purple-500 transition"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </nav>
         )}
       </div>
